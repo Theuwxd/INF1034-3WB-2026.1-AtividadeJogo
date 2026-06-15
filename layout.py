@@ -1,24 +1,24 @@
-import pygame
+from pygame import *
 import sys
-from pygame.locals import QUIT
 
-pygame.init()
 
-screen = pygame.display.set_mode((1000, 600))
-pygame.display.set_caption('Hello world')
-clock = pygame.time.Clock()
+init()
+
+screen = display.set_mode((1000, 600))
+display.set_caption('Hello world')
+clock = time.Clock()
 
 #fonte do texto
-fonte = pygame.font.Font('texto.ttf', 10)
+fonte = font.Font('texto.ttf', 10)
 
 # imagem de coraçao do lado da vida
-heart = pygame.image.load('coracao.png')
-
+vida = image.load('vida.png')
+vidas = 2
 
 while True:
-    for evento in pygame.event.get():
-        if evento.type == pygame.QUIT:
-            pygame.quit()
+    for evento in event.get():
+        if evento.type == QUIT:
+            quit()
             sys.exit()
 
     clock.tick(60)
@@ -26,15 +26,41 @@ while True:
 
     screen.fill((0, 0, 0))
 
-    pygame.draw.rect(screen, (102, 51, 0), (20, 20, 200, 70), border_radius=20)
-    screen.blit(heart, (25, 40))
+    draw.rect(screen, (102, 51, 0), (20, 20, 200, 70), border_radius=20)
+    
+    vida = transform.scale(vida, (100,50))
+
+    if vidas == 3:
+        print("Entrei aqui 3")
+        vida_cheia = screen.blit(vida, (15, 32), (0, 0, 35, 50))
+        draw.rect(screen, (0, 0, 0), (54, 45, 150, 20), border_radius=20)
+        draw.rect(screen, (204, 0, 0), (154, 45, 64, 20), border_radius=20)
+        draw.rect(screen, (204, 0, 0), (104, 45, 64, 20), border_radius=20)
+        draw.rect(screen, (204, 0, 0), (154, 45, 64, 20), border_radius=20)
+    elif vidas == 2:
+        print("Entrei aqui 2")
+        vida_metade = screen.blit(vida, (20, 32), (33, 0, 30, 50))
+        draw.rect(screen, (0, 0, 0), (54, 45, 150, 20), border_radius=20)
+        draw.rect(screen, (204, 0, 0), (54, 45, 64, 20), border_radius=20)
+        draw.rect(screen, (204, 0, 0), (104, 45, 64, 20), border_radius=20)   
+    elif vidas == 1:
+        print("Entrei aqui 1")
+        vida_metade = screen.blit(vida, (20, 32), (33, 0, 30, 50))
+        draw.rect(screen, (0, 0, 0), (54, 45, 150, 20), border_radius=20)
+        draw.rect(screen, (204, 0, 0), (54, 45, 64, 20), border_radius=20)
+    elif vidas == 0:
+        print("Entrei aqui 0")
+        vida_vazia = screen.blit(vida, (21, 32), (60, 0, 30, 50))
+        draw.rect(screen, (0, 0, 0), (54, 45, 150, 20), border_radius=20)
+    
 
     #Coloquei as vidas separadas, pq pensei em quando a gnt perder uma vida tem como diminuir tirando uma delas
     #mas isso foi ideia inical, qualquer coisa a gnt muda
-    pygame.draw.rect(screen, (204, 0, 0), (54, 45, 50, 20), border_radius=20)
-    pygame.draw.rect(screen, (204, 0, 0), (54, 45, 100, 20), border_radius=20)
-    pygame.draw.rect(screen, (204, 0, 0), (54, 45, 150, 20), border_radius=20)
-
+    # draw.rect(screen, (0, 0, 0), (54, 45, 150, 20), border_radius=20)
+    # draw.rect(screen, (204, 0, 0), (54, 45, 64, 20), border_radius=20)
+    # draw.rect(screen, (204, 0, 0), (104, 45, 64, 20), border_radius=20)
+    # draw.rect(screen, (204, 0, 0), (154, 45, 64, 20), border_radius=20)
+    
     #colocar os textos 
     texto1 = fonte.render('A - esquerda', True, (255, 255, 255))
     texto2 = fonte.render('D - direita', True, (255, 255, 255))
@@ -55,4 +81,4 @@ while True:
 
 
 
-    pygame.display.update()
+    display.update()
