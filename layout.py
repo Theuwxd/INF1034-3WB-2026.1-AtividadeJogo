@@ -13,7 +13,7 @@ fonte = font.Font('texto.ttf', 10)
 
 # imagem de coraçao do lado da vida
 vida = image.load('vida.png')
-vidas = 2
+life = 0
 
 while True:
     for evento in event.get():
@@ -30,26 +30,25 @@ while True:
     
     vida = transform.scale(vida, (100,50))
 
-    if vidas == 3:
-        print("Entrei aqui 3")
+    if life == 3:
         vida_cheia = screen.blit(vida, (15, 32), (0, 0, 35, 50))
         draw.rect(screen, (0, 0, 0), (54, 45, 150, 20), border_radius=20)
-        draw.rect(screen, (204, 0, 0), (154, 45, 64, 20), border_radius=20)
+        draw.rect(screen, (204, 0, 0), (54, 45, 64, 20), border_radius=20)
         draw.rect(screen, (204, 0, 0), (104, 45, 64, 20), border_radius=20)
         draw.rect(screen, (204, 0, 0), (154, 45, 64, 20), border_radius=20)
-    elif vidas == 2:
-        print("Entrei aqui 2")
+
+    elif life == 2:
         vida_metade = screen.blit(vida, (20, 32), (33, 0, 30, 50))
         draw.rect(screen, (0, 0, 0), (54, 45, 150, 20), border_radius=20)
         draw.rect(screen, (204, 0, 0), (54, 45, 64, 20), border_radius=20)
         draw.rect(screen, (204, 0, 0), (104, 45, 64, 20), border_radius=20)   
-    elif vidas == 1:
-        print("Entrei aqui 1")
+
+    elif life == 1:
         vida_metade = screen.blit(vida, (20, 32), (33, 0, 30, 50))
         draw.rect(screen, (0, 0, 0), (54, 45, 150, 20), border_radius=20)
         draw.rect(screen, (204, 0, 0), (54, 45, 64, 20), border_radius=20)
-    elif vidas == 0:
-        print("Entrei aqui 0")
+        
+    elif life == 0:
         vida_vazia = screen.blit(vida, (21, 32), (60, 0, 30, 50))
         draw.rect(screen, (0, 0, 0), (54, 45, 150, 20), border_radius=20)
     
